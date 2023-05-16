@@ -1,0 +1,1326 @@
+@import '../librairie/couleur.scss';
+@import '../librairie/mixins.scss';
+@import '../librairie/font.scss';
+@import '../librairie/heritage.scss';
+@import '../librairie/fonction.scss';
+@import '../librairie/responsive.scss';
+
+*{margin: 0;padding: 0;box-sizing: border-box;}
+body{
+    background:$fond;
+    &::-webkit-scrollbar{
+        width: 5px;
+    }
+    &::-webkit-scrollbar-thumb{
+        background-color: $secondaire;border-radius: 50px;
+    }
+}
+
+header{   
+    @include displayFlex(row);justify-content:center;position: fixed;width:100%;z-index: 15;transition: 0.5s;
+    @media #{$tablette} {
+        justify-content: space-around;
+    }
+    @media #{$mobile} {
+        justify-content: space-between;padding:6px 20px;background-color: rgba($primaire,0.5);
+    }
+    @media #{$miniature}{
+        padding: 6px 10px;
+    }
+
+    .logo{
+        @extend %logo;
+    }
+    .midina{
+        width: 45%;margin:0 4vw 0 4vw;   
+        ul{
+            @include displayFlex(row);justify-content: space-evenly; list-style: none;width:100%;
+            li a{
+                @extend %barre_de_navigation;           
+                opacity: 0.9;
+                @media #{$mobile}{
+                    @include soratra(kaushan,$tertiaire,25px);
+                    display: block;width:100%;
+                }
+               &:hover{
+                    color:$orange-kely;
+               }
+            }
+            li{
+                @extend %barre_de_navigation;position: relative;
+                .service{
+                    @include displayFlex(row);cursor: pointer;opacity: 0.9;
+                    i{
+                        font-size: 15px;margin-top: 4px;
+                        margin-left: 3px;
+                        @media #{$mobile}{
+                            display: block;font-size: 18px;transition:0.3s;
+                            transform: rotate(-90deg);
+                            margin-left: 8px ;margin-top:6px;
+                        }
+                    }
+                    &:hover{
+                        color: $orange-kely;
+                    }
+                    @media #{$mobile}{
+                        @include displayCenter;
+                        @include soratra(kaushan,$tertiaire,25px);
+                        height: 30px !important;
+                    }
+                }
+             
+                .tousService{
+                    position: absolute;background:rgba($primaire,0.8);
+                    overflow: hidden;box-shadow:0 0 0.25vw $tertiaire;
+                    ul{
+                        margin-top: -100%;transition: 0.5s ease-out;
+                        @include displaySimple(column);padding: 15px 0px;
+                        li:nth-child(1){
+                            @include sous-menu-milay($ambony);
+                        }
+                        li:nth-child(2){
+                            @include sous-menu-milay($orange-kely);
+                        }
+                        li:nth-child(3){
+                            @include sous-menu-milay($ambany);
+                            &:hover{
+                                .menu-menu{
+                                    display: block;
+                                }
+                            }
+                        }
+                        li:nth-child(4){
+                            @include sous-menu-milay($secondaire);
+                            &:hover{
+                                .menu-menu{
+                                    display: block;
+                                }
+                            }
+                        }
+                        .menu-menu{
+                            display:none;box-shadow:0 0 0.25vw $tertiaire;
+                            position: absolute;background:rgba($primaire,0.7);
+                            top:-19px;left: 100.5%;padding: 10px 0;
+                            a{
+                                margin-bottom: 10px;
+                                .texte-titre{
+                                    width: 145px !important;    
+                                }
+                            }
+                        }
+                        @media #{$mobile} {
+                                margin-top: 0 !important;
+                        }
+                    }
+                    @media #{$tablette}{
+                        left: -150%;
+                    }
+                    @media #{$tablette-kely}{
+                        left: -200%;
+                    }
+                }
+               
+                &:hover{
+                    ul{
+                        margin-top:0%;
+                    }
+                }
+            }
+        }
+        @media #{$ordi}{
+            width:50%;
+        }
+        @media #{$tablette}{
+            width: 60%;margin:0;
+        }
+        @media #{$mobile}{
+            display: none;
+        }
+
+    } 
+    .navResponsive{
+        display: none;
+        @media #{$mobile}{
+        display: block;  overflow-y: auto;height:450px;margin-left:-100%;
+        position:absolute;background:rgba($bleu,0.95);width: 100%;
+        left: 0%;padding-top:20px;transition:0.5s ease-out;
+        ul{
+            @include displayCenter;flex-direction: column;list-style: none;
+            li{
+                @include displayCenter;flex-direction: column;
+                #texte-i{
+                    transition: 0.3s;transform-origin: 20% 20%;
+                }
+            }
+            #teste{
+                display: none;
+                width: 0 !important;height: 0 !important;
+            }
+            .li_1{
+                @include sous-menu-special(#f09b63); 
+            }
+            .li_2{
+                @include sous-menu-special($vert); 
+            }
+            .li_3{
+                @include sous-menu-special(rgb(71, 71, 153)); 
+            }
+            .li_4{
+                @include sous-menu-special(rgb(90, 221, 199)); 
+            }
+            .li_5{
+                @include sous-menu-special($primaire); 
+            }
+            
+            .li_6{
+                @include sous-menu-special($secondaire); 
+            }
+            .mitsinjo{
+                overflow: hidden;width:300px;margin-left:30px;
+                margin-top: -10px;margin-bottom:10px;
+                ul{
+                    margin-top: -100%;transition: 0.3s ease-in-out;
+                    li{
+                        .texte-titre{
+                            width: 180px !important;
+                        }                       
+                    }
+                    .menu-fille{
+                        background: red;
+                        overflow: hidden;margin-left:60px;
+                        .menu-fille-fille-sante{
+                            @include sous-menu-milay($ambany);
+                            transition: 0.3s ease-in-out;margin-top:-100%;
+                            .texte-titre{
+                                width: 150px !important;
+                            }
+                            a{
+                                margin-bottom: 8px;
+                            }
+                        }
+                        .menu-fille-fille-reservation{
+                            @include sous-menu-milay($secondaire);
+                            transition: 0.3s ease-in-out;margin-top:-100%;
+                            .texte-titre{
+                                width: 150px !important;
+                            }
+                            a{
+                                margin-bottom: 8px;
+                            }
+                        }
+                    }
+                    .reserve1{
+                        @include sous-menu-milay($ambony);
+                    }
+                    .reserve2{
+                        @include sous-menu-milay($orange-kely);
+                    }
+                    .reserve3{
+                        @include sous-menu-milay($ambany);
+                        #teste1 , #teste2{
+                            display: none;
+                        }
+                    }
+                    .reserve4{
+                        @include sous-menu-milay($secondaire);
+                    }
+                    #active{
+                        @include sous-menu-active($ambany);
+                    }
+                    #active1{
+                        @include sous-menu-active($secondaire);
+                    }
+                }
+            }
+        }
+    }
+    }
+    .menu{
+        display: none;
+        @media #{$mobile}{
+            position: relative;display:block;
+            width: 20px;height:10px;
+            i{
+                position: absolute;font-size: 28px;
+                color: $fanampiny;top: -8px;right: 0px;
+            }
+        }
+    }
+
+    .connexion{
+        @include displayFlex(row);
+        border-radius: 3vw;background-color: $fotsy;padding:0.8vw 1.5vw 0.7vw 1.5vw;
+        i{
+            font-size: 18px;margin-right: 5px;color: $fanampiny;
+        }
+        p{
+            @include soratra(gruppo, $primaire, 16px);margin-top: -0.1vw;
+        }
+        @media #{$tablette-kely} {
+            display: none;
+        }
+    }
+}
+
+
+.section1{
+    @include fondNoir(url(../../photo/epicerie.jpg), 0.7);
+    @include displayCenter; overflow: hidden;
+    width: 100%;min-height: 45vw;
+    @media #{$mobile-kely}{
+        min-height:300px;
+    }
+    @media #{$miniature}{   
+        min-height:300px;
+    }
+    .box{
+        width: 78%;position: absolute;margin-top: -3vw;
+        @include displayFlex(row);justify-content:space-between;
+        @media #{$tablette}{
+            width: 85%;
+        }
+        @media #{$mobile}{
+            width: 90%;
+        }
+        @media #{$mobile-kely}{
+            width: 100%;
+            @include displayCenter;
+        }
+        @media #{$miniature}{
+            margin-top: 50px;
+        }
+        .support{
+            display: flex;justify-content: center;align-items: flex-start;
+            position: absolute;z-index:4;transform: scale(0);transition: 0.5s;
+            width: 100%;height: 100%;
+            .enveloppe{
+                background: linear-gradient(#017bc6, #029859);
+                padding: 30px 50px;position: relative;
+                .mialaAmbony{
+                    @extend %miala;
+                }
+                .vrai-tete{
+                    @include displayFlex(row);
+                    margin-bottom: 20px;
+                    hr{
+                        width: 35%;
+                        color: $tertiaire;
+                    }
+                    p{
+                        @include displayCenter;
+                        @include dimension(100px,100px);
+                        border: 2px solid $tertiaire;
+                        border-radius: 50%;background:rgba(white,0.6);
+                        img{
+                            @include dimension(80px,80px);
+                            margin-left: -10px;
+                        }
+                    }
+
+                }
+                .se-connecter{
+                    @include displayCenter;flex-direction: column;
+                    background:rgba(white, 0.5);padding:25px 0;
+                    width: 300px;
+                    .tete{
+                        @include displayFlex(row);
+                        margin-left: 30px;
+                        align-self: flex-start;
+                        i{
+                            display: block;margin-right: 15px;margin-top: -22px;
+                            font-size: 45px;color: $formulaire;
+                        }
+                        .style{
+                            margin-bottom: 20px;
+                            p:nth-child(1){
+                                @include soratra(vaovao, $primaire, 22px);
+                                letter-spacing: -1px;margin-bottom: -2px;
+                            }
+                            p:nth-child(2){
+                                @include soratra(kaushan, $formulaire, 25px);
+                                text-transform: uppercase;font-weight: 500;letter-spacing: -2px;
+                            }
+                        }
+                    }
+                    form{
+                        @include displayCenter;flex-direction: column;
+                        width: 100%;
+                        .username{
+                            width: 80%;position:relative;
+                            margin-bottom: 20px;
+                            img{
+                                display: block;position: absolute; top:6px;
+                                @include dimension(25px, 25px);
+                            }
+                            input{
+                                @include soratra(arial, $tertiaire, 15px);
+                                padding: 10px 15px 10px 35px;width: 100%;
+                                background:$formulaire;border: none;
+                                outline-style: none;border-radius: 4px;
+                            }
+                        }
+                        .enregistre{
+                            display: flex; align-items: flex-start;
+                            width: 80%;
+                            input{
+                                @include dimension(50px, 22px);
+                                position: absolute;z-index: 2;opacity: 0;
+                            }
+                            .corp{
+                                @include displayCenter;justify-content: space-between;
+                                background:$formulaire;position: relative;
+                                @include dimension(52px, 22px);
+                                border-radius: 10px;padding:0 6px;
+                                .yes{
+                                    @include soratra (nav, $secondaire,16px);margin-top: -1px;margin-left: 1px;
+                                    display: none;
+                                }
+                                .no{
+                                    @include soratra (nav, $tertiaire,15px);margin-top: -1px;margin-left: 15.5px;
+                                }
+                                #power{
+                                    position: absolute;top: 3px;right: 4px;
+                                    @include dimension(16px, 16px);
+                                    border-radius: 50%;background: $orange;
+                                }
+                                #poweroff{
+                                    position: absolute;top: 3px;left: 4px;
+                                    @include dimension(16px, 16px);
+                                    border-radius: 50%;background: $tertiaire;
+                                }
+                            }
+                            label{
+                                @include soratra(arial, $primaire, 17px);margin-left: 8px;margin-top: 2px;
+                            }
+                        }
+                        a{
+                            @include soratra(arial, $formulaire, 15px);
+                            display: block;display: flex;transition: 0.5s;
+                            align-self: flex-end;margin-right: 30px;margin-top: 15px;
+                            &:hover{
+                                color: #017bc6;
+                            }
+                        }
+                        .submit{
+                            display: flex;align-self:end;
+                            margin-right: 30px;margin-top:20px;
+                            span{
+                                @include soratra(gruppo,fond, 20px);
+                                font-weight: bold;letter-spacing: -0.5px;
+                                margin-right: 10px;display: block;margin-top: 4px;
+                            }
+                            button{
+                                background: $fanampiny;border: none;padding: 3px 12px 2px 12px;
+                                border-radius: 10px;transition:0.5s ease-out;cursor: pointer;
+                                i{
+                                    color: $tertiaire;font-size: 20px;
+                                }
+                                &:hover{
+                                    background: $tertiaire;
+                                    i{
+                                        color: $fanampiny;
+                                    }
+                                }
+                                
+                            
+                            }
+                        }
+                    }
+                
+                }
+            }
+        }
+    }
+    .gauche{
+        width: 45%; @include displayFlex(column);align-items: flex-start;
+        margin-top: -2vw;
+        @media #{$tablette}{
+            width: 60%;
+        }
+        @media #{$mobile}{
+            width: 80%;
+        }
+        @media #{$mobile-kely}{
+            width: 90%;
+        }
+        h4{
+            @include soratra(vaovao, $tertiaire, 2vw);
+            opacity: 0.7;
+            @media #{$tablette}{
+                @include soratra(vaovao, $tertiaire, 2.5vw);
+            }
+            @media #{$mobile}{
+                @include soratra(vaovao, $tertiaire, 25px);
+            }
+            @media #{$mobile-kely}{
+                @include soratra(vaovao, $tertiaire, 23px);
+            }
+            @media #{$miniature}{
+                @include soratra(kaushan, white, 21px);font-weight:100;
+            }
+
+        }
+  
+        h1{
+            @include soratra(cinzel, $vert, 2.5vw);
+            text-transform: capitalize;
+            @media #{$tablette}{
+                @include soratra(cinzel, $vert, 3vw);
+            }
+            @media #{$tablette-kely}{
+                @include soratra(cinzel, $vert, 3.4vw);
+            }
+            @media #{$mobile}{
+                @include soratra(cinzel, $vert, 26px);
+            }
+            @media #{$mobile-kely}{
+                @include soratra(cinzel, $vert, 20px);
+            }
+            @media #{$miniature}{
+                @include soratra(cinzel, $vert, 22px);
+            }
+        }
+        p{
+            @extend %barre_de_navigation;letter-spacing: 0vw;
+        }
+       
+    }
+    .droite{
+        img{
+            width: 30vw;height:auto;margin-top:6vw; 
+        }
+        @media #{$tablette}{
+            margin-right: -6vw;
+        }
+        @media #{$mobile}{
+            display: none;
+        }
+    }
+}
+.section2{
+    background:$tertiaire;width: 100%;
+    padding:3vw 0;@include displayFlex(row);justify-content:space-around;
+    @media #{$mobile} {
+        @include displayFlex(column-reverse);
+    }
+    .apropos{
+        width: 45%;
+        @media #{$mobile} {
+            width: 80%;margin-bottom:3vw;
+        }
+        h6{ 
+            @include soratra(kaushan, $fond, 1.5vw);
+            @media #{$tablette}{
+                @include soratra(kaushan, $fond, 1.7vw);
+            }
+            @media #{$tablette-kely}{
+                @include soratra(kaushan, $fond, 2vw);
+            }
+            @media #{$mobile} {
+                @include soratra(kaushan, $fond, 2.8vw);
+            }
+            @media #{$mobile-kely} {
+                @include soratra(kaushan, $fond, 20px);
+            }
+            @media #{$miniature} {
+                @include soratra(kaushan, $fond, 17px);
+            }
+        }
+        h1{
+            @include soratra(luky, $secondaire, 1.7vw);
+            margin: 1vw 0;text-transform: capitalize;letter-spacing:0.1vw;          
+            i{
+                font-size: 3.5vw;margin-left: -3.5vw;margin-top: -1vw;
+            }
+            @media #{$tablette}{
+                @include soratra(luky, $secondaire, 2vw);
+            }
+            @media #{$tablette-kely}{
+                @include soratra(luky, $secondaire, 2.4vw);
+            }
+            @media #{$mobile} {
+                @include soratra(luky, $secondaire, 2.8vw);
+            }
+            @media #{$mobile-kely} {
+                @include soratra(luky, $secondaire, 20px);
+            }
+            @media #{$miniature} {
+                @include soratra(luky, $secondaire,20px);
+                font-weight: 100 !important;
+            }
+        }
+        p{
+            @include soratra(vaovao, $fond, 1.8vw);
+            @media #{$tablette}{
+                @include soratra(vaovao, $fond, 2vw);
+            }
+            @media #{$tablette-kely}{
+                @include soratra(vaovao, $fond, 2.4vw);
+            }
+            @media #{$mobile} {
+                @include soratra(vaovao, $fond, 2.8vw);
+            }
+            @media #{$mobile-kely} {
+                @include soratra(vaovao, $fond, 20px);
+            }
+            @media #{$miniature} {
+                @include soratra(vaovao, $fond, 25px);;
+            }
+        }
+    }
+    .image{
+        position: relative;width: 33vw;height:33vw;
+        @media #{$tablette-kely}{
+            width: 38vw;height:38vw;
+        }
+        @media #{$mobile} {
+            width: 47vw;height:47vw;
+        }
+        @media #{$mobile-kely} {
+            width: 58vw;height:58vw;
+        }
+        div{
+            @include portfolio(12,0.6, 1vw); top:calculPosition(33,12,1vw);left:calculPosition(33,12,1vw);
+            @media #{$tablette-kely}{
+                @include portfolio(14,0.6, 1vw); top:calculPosition(38,14,1vw);left:calculPosition(38,14,1vw);
+            }
+            @media #{$mobile} {
+                @include portfolio(18,0.6, 1vw); top:calculPosition(42,14,1vw);left:calculPosition(42,14,1vw);
+            }
+            @media #{$mobile-kely} {
+                @include portfolio(23,0.6, 1vw); top:calculPosition(42,14,1vw);left:calculPosition(42,14,1vw);
+            }
+            &::after{
+                content: '';position: absolute;
+                z-index: 5;width: 12vw;height: 12vw;
+                background: linear-gradient(to right,$bleu 40%,$fanampiny);opacity: 0.5;
+                @media #{$tablette-kely}{
+                    width: 14vw;height: 14vw;
+                }
+                @media #{$mobile} {
+                    width: 18vw;height:18vw;
+                }
+                @media #{$mobile-kely} {
+                    width: 23vw;height:23vw;
+                }
+            }
+        }
+        div:nth-child(5){
+            z-index: 2;@include portfolio(25,0.6, 1vw);top:calculPosition(32.5,25,1vw);left:calculPosition(32.5,25,1vw);
+            transform: scale(0.3);
+            @media #{$tablette-kely}{
+                @include portfolio(27,0.6, 1vw);
+                top:calculPosition(35.5,25,1vw);left:calculPosition(35.5,25,1vw);
+            }
+            @media #{$mobile} {
+                @include portfolio(35,0.6, 1vw);
+                top:calculPosition(36.5,25,1vw);left:calculPosition(36.5,25,1vw);
+            }
+            @media #{$mobile-kely} {
+                @include portfolio(40,0.6, 1vw);
+                top:calculPosition(42.5,25,1vw);left:calculPosition(42.5,25,1vw);
+            }
+            &::after{
+                width: 25vw;height: 25vw;
+                @media #{$tablette-kely}{
+                    width: 28vw;height: 28vw;
+                }
+                @media #{$mobile}{
+                    width: 42vw;height: 42vw;
+                }
+                @media #{$mobile-kely}{
+                    width: 47vw;height: 47vw;
+                }
+            }
+        }
+    }
+}
+#animation1{
+    top: 0;left: 0;right:inherit;bottom:inherit;
+    animation: rotate1 1s;
+}
+#animation2{
+    top: 0;left:inherit;right:0 ;bottom: inherit;
+    animation: rotate2 1s;
+}
+#animation3{
+    top: inherit;left:0;right:inherit;bottom:0;
+    animation: rotate3 1s;
+}
+#animation4{
+    top: inherit;left:inherit;right:0;bottom:0;
+    animation: rotate4 1s;
+}
+#animation5{
+    animation: rotate5 1s ease-in-out;
+    transform: scale(1);
+}
+@keyframes rotate5{
+    0%{transform: scale(0.3);}
+    100%{transform: scale(1);}
+}
+@keyframes rotate1 {
+    0%{
+        top:calculPosition(33,12,1vw);left:calculPosition(33,12,1vw);
+        transform: rotate(0deg);
+    }
+    100%{
+        top: 0;left: 0;right:none;bottom: none;
+        transform: rotate(720deg);
+    }
+}
+@keyframes rotate2 {
+    0%{
+        top:calculPosition(33,12,1vw);right:calculPosition(33,12,1vw);
+        transform: rotate(0deg);
+    }
+    100%{
+        top: 0;left:inherit;right:0 ;bottom: inherit;
+        transform: rotate(720deg);
+    }
+    }
+    @keyframes rotate3 {
+        0%{
+            bottom:calculPosition(33,12,1vw);right:calculPosition(33,12,1vw);
+            transform: rotate(0deg);
+        }
+        100%{
+            top: inherit;left:0;right:inherit;bottom:0;
+            transform: rotate(720deg);
+        }
+    }
+    @keyframes rotate4 {
+        0%{
+            bottom:calculPosition(33,12,1vw);right:calculPosition(33,12,1vw);
+            transform: rotate(0deg);
+        }
+        100%{
+            top: inherit;left:inherit;right:0;bottom:0;
+            transform: rotate(720deg);
+        }
+}
+
+.section3{
+    position: relative;
+    background:url(../../photo/fond.jpg);
+    background: {
+        blend-mode: darken;
+        repeat:no-repeat;
+        size: cover;
+        position: center;
+    }
+    @include displayFlex(row);justify-content: space-around;
+    width: 100%;padding: 1vw;flex-wrap:wrap;
+    @media #{$mobile}{
+        background:rgba($bleu,0.5) url(../../photo/tesselation.png);
+    }
+    .fond{
+        content: '';position: absolute;z-index: 2;width: 100%;height: 100%;
+        background: linear-gradient(to right,$bleu 70%,$fanampiny-matsatso);opacity: 0.7;
+        @media #{$mobile}{
+            display: none;
+        }
+    }
+    .sorte-de-produit{
+        border: 1px solid $tertiaire;margin-bottom: 1vw;margin-top: 1vw;
+        width:45%;padding:2vw;z-index: 5;
+        @media #{$ecran-large}{
+            width:30%;
+        }
+        @media #{$tablette-kely}{
+            width:49%;
+        }
+        @media #{$mobile}{
+            width:80%;
+        }
+        @media #{$mobile-kely}{
+            width: 95%;
+        }
+        div{
+            @include displayCenter;
+            clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+            @include dimension(7vw, 7vw);
+            background-color:$mangakely;
+            animation:loko 8s linear infinite;transition: 1s;
+            @media #{$tablette}{
+                width: 9vw;height: 9vw;
+            }
+            @media #{$mobile}{
+                width: 11vw;height: 11vw;
+            }
+            @media #{$mobile-kely}{
+                width: 70px;;height: 70px;
+            }
+            @keyframes loko {
+                0%{ background: $mangakely;}
+                25%{background: $secondaire;}
+                50%{background: $vert;}
+                75%{ background: $bleu;}
+                100%{background: $mangakely;}
+            }
+            img{
+                @include dimension(5vw, 5vw);
+                @media #{$tablette}{
+                    @include dimension(6vw, 6vw);
+                }
+                @media #{$mobile}{
+                    @include dimension(7vw, 7vw);
+                }
+                @media #{$mobile-kely}{
+                    @include dimension(50px, 50px);
+                }
+            }
+        }
+ 
+
+        h2{
+            @include soratra(gruppo, $secondaire, 2vw);
+            letter-spacing: -1px;margin:1vw 0;
+            @media #{$tablette}{
+                @include soratra(gruppo, $secondaire, 3vw);
+            }
+            @media #{$mobile}{
+                @include soratra(gruppo, $secondaire, 3.5vw);
+            }
+            @media #{$mobile-kely}{
+                @include soratra(gruppo, $secondaire, 32px);
+            }
+        }
+        p{
+            @include soratra(vaovao, $tertiaire, 1.8vw);
+            margin-bottom: 2vw;
+            @media #{$tablette}{
+                @include soratra(vaovao, $tertiaire, 2.5vw);
+            }
+            @media #{$mobile}{
+                @include soratra(vaovao, $tertiaire, 2.9vw);
+            }
+            @media #{$mobile-kely}{
+                @include soratra(vaovao, $tertiaire, 23px);
+            }
+        }
+        a{
+            @include bouton(18, 5, 1.5, 1.4, 1vw);
+            margin-bottom: 2vw;
+            @media #{$tablette}{
+                @include bouton(18, 5, 4, 2, 1vw);
+                margin-bottom: 4vw;
+            }
+            @media #{$mobile}{
+                @include bouton(18, 5, 4, 2.3, 1vw);
+                margin-bottom: 5vw;
+            }
+            @media #{$mobile-kely}{
+                @include bouton(50, 10, 20, 20, 1px);
+                margin-bottom: 35px;font-weight:100;
+            }
+        }
+    }
+}
+
+.section4{
+    @include displayCenter;
+    padding: 4vw 0;width: 100%;
+    background: $tertiaire;position: relative;
+    
+    .jejo{
+        @include displayFlex(row);
+        background:$tertiaire;width: 90%;min-height: 490px;
+        box-shadow: 0 0 1vw $bleu;position: relative;
+        @media #{$tablette}{
+            position: static;
+        }
+        @media #{$tablette-kely} {
+            @include displayFlex(column);
+            width: 80%;min-height: 20vw;
+        }
+        @media #{$miniature}{
+            width: 98%;
+        }
+        @media #{$mobile}{
+            position: relative;
+
+        }
+        .modal{
+            @include displayFlex(row);justify-content: space-around;
+            width: 100%;padding: 4vw 0;
+            position: absolute;top: 0;left:0;z-index: 8;
+            background-color: rgba($primaire,0.95);
+            @media #{$tablette}{
+                width:98%;left:1vw;top:4vw;
+            }
+            @media #{$mobile}{
+                @include displayFlex(column);
+                width: 100%; top:0;left:0;padding: 6vw 1vw;
+            }
+            .miala{
+                @extend %miala;
+            }
+            .modal-image{
+                @include displayCenter;
+                position: relative;
+                @media #{$tablette}{
+                    margin-right: 1vw;
+                }
+                .case{
+                    position: absolute;top:0;right: 0;
+                    @include dimension(18vw, 14vw);border:8px solid $secondaire;
+                    @media #{$ordi}{
+                        @include dimension(22vw, 18vw);
+                    }
+                    @media #{$ordi}{
+                        @include dimension(30vw, 26vw);
+                    }
+        
+                    @media #{$miniature}{
+                        @include dimension(230px,120px);
+                    }
+                }
+                .plein{
+                    position: absolute;bottom: 0;left: 0;
+                    @include dimension(18vw, 14vw);background: $secondaire;
+                    @media #{$ordi}{
+                        @include dimension(22vw, 18vw);
+                    }
+                    @media #{$ordi}{
+                        @include dimension(30vw, 26vw);
+                    }
+                    @media #{$miniature}{
+                        @include dimension(230px,120px);
+                    }
+                }
+                img{
+                    @include dimension(28vw, 22vw);z-index: 2;
+                    padding: 2vw 3vw;
+                    @media #{$ordi}{
+                        @include dimension(32vw, 26vw);
+                    }
+                    @media #{$ordi}{
+                        @include dimension(54vw, 38vw);
+                    }
+                    @media #{$tablette-kely}{
+                        @include dimension(40vw, 32vw);
+                    }
+                    @media #{$miniature}{
+                        @include dimension(280px,220px);
+                        padding: 25px 28px;
+                    }
+                }
+            }
+            .modal-expli{
+                width:55%;
+                @media #{$mobile}{
+                    width: 95%;margin-top:6vw;
+                }
+                h1{
+                    @include soratra(cinzel, $secondaire, 2.5vw);
+                    text-transform: capitalize;font-weight: bold;
+                    @media #{$ordi}{
+                        @include soratra(cinzel, $secondaire, 3vw);
+                    }
+                    @media #{$tablette}{
+                        @include soratra(cinzel, $secondaire, 3.5vw);
+                    }
+                    @media #{$mobile}{
+                        text-align: center;
+                        @include soratra(cinzel, $secondaire, 4.2vw);
+                    }
+                    @media #{$mobile-kely}{
+                        @include soratra(cinzel, $secondaire, 4.8vw);
+                    }
+                    @media #{$miniature}{
+                        @include soratra(cinzel, $secondaire, 30px);
+                    }
+                }
+                p{
+                    @include soratra(vaovao, $tertiaire, 1.8vw);
+                    margin: 1vw 0;
+                    @media #{$ordi}{
+                        @include soratra(vaovao, $tertiaire, 2.2vw);
+                    }
+                    @media #{$tablette}{
+                        @include soratra(vaovao, $tertiaire, 2.8vw)
+                    }
+                    @media #{$mobile}{
+                        @include soratra(vaovao, $tertiaire, 3.5vw)
+                    }
+                    @media #{$mobile-kely}{
+                        @include soratra(vaovao, $tertiaire, 4vw)
+                    }
+                    @media #{$miniature}{
+                        @include soratra(vaovao, $tertiaire, 25px)
+                    }
+                }
+                nav{
+                    margin-left:3vw;
+                    ul{
+                        
+                        list-style:outside;
+                        li{
+                            @include soratra(vaovao, $bleu, 1.8vw);
+                            @media #{$ordi}{
+                                @include soratra(vaovao, $bleu, 2.2vw);
+                            }
+                            @media #{$tablette}{
+                                @include soratra(vaovao, $bleu, 2.8vw);
+                            }
+                            @media #{$mobile}{
+                                @include soratra(vaovao, $bleu, 3.2vw)
+                            }
+                            @media #{$mobile-kely}{
+                                @include soratra(vaovao, $bleu, 3.7vw)
+                            }
+                            @media #{$mobile-kely}{
+                                @include soratra(vaovao, $bleu, 25px)
+                            }
+                        }
+                    }
+                }
+                .connexion{
+                    display: inline-block;
+                    @extend %lien;
+                }
+            }
+        }
+        .petit{
+            background-color: $bleu;width: 40%;overflow: hidden;
+            background-image: url(../../photo/tesselation.png);
+            @media #{$tablette-kely} {
+                width: 100%;padding:4vw;height:auto !important;
+            }
+            h1{
+                @include soratra(luky,$tertiaire,2.5vw);margin: 2vw 0 0 0;
+                @include displayCenter;flex-direction: column;position: relative;
+                @media #{$tablette}{
+                    @include soratra(luky,$tertiaire,3.5vw);
+                }
+                @media #{$tablette-kely}{
+                    @include soratra(luky,$tertiaire,40px);
+                }
+                i{
+                    -webkit-text-stroke:1px  #d8d5d5;margin-bottom: 0.5vw;
+                    font-size: 3vw;-webkit-text-fill-color: transparent;
+                    @media #{$tablette}{
+                        font-size: 4vw;
+                    }
+                    @media #{$tablette-kely}{
+                       font-size: 50px;
+                    }
+                }
+                .formation{
+                    @include displayFlex(row);
+                    span{
+                        display: block;z-index: 1;
+                        -webkit-text-stroke:1px $secondaire;-webkit-text-fill-color: transparent;
+                        transition: .5s ease-in-out !important;
+                    }
+                    span:nth-child(1){animation-delay: .5s;}
+                    span:nth-child(2){animation-delay: 1s;}
+                    span:nth-child(3){animation-delay: 1.5s;}
+                    span:nth-child(4){animation-delay: 2s;}
+                    span:nth-child(5){animation-delay: 2.5s;}
+                    span:nth-child(6){animation-delay: 3s;}
+                    span:nth-child(7){animation-delay: 3.5s;}
+                    span:nth-child(1){animation-delay: 4s;}
+                    span:nth-child(9){animation-delay: 4.5s;}
+                    span:nth-child(10){animation-delay: 5s;}
+                    span:nth-child(11){animation-delay: 5.5s;}
+                }
+                .animationFormation{
+                    animation: mipoitra 0.1s infinite;animation-delay: 3s;
+                }
+                @keyframes mipoitra {
+                    0%,100%{z-index:2;}
+                }
+                .animationSpan{
+                    animation: stroke 2s linear infinite ;
+                }
+                @keyframes stroke{
+                    0%{-webkit-text-fill-color:#ff2323;-webkit-text-stroke: 1px #64fca5;}
+                    100%{-webkit-text-fill-color:#9e3d3d;-webkit-text-stroke: 1px #eba61c;}
+                }
+                .manakona{
+                    background:$bleu;position: absolute;bottom: 0;
+                    height: 50%;width: 80%;z-index: 1;
+                }          
+                .animationManakona{
+                    animation: manakona 3s linear ;
+                }
+                @keyframes manakona {
+                    0%{left: 20%;border-left: 1.5px solid white;}
+                    100%{left:80%;border-left: 1.5px solid white;}
+                }
+            }
+            p{
+                margin: 1vw;padding:1vw;border: 1px solid $tertiaire;
+                @include soratra(vaovao, $tertiaire, 1.8vw);
+                @media #{$ordi}{
+                    @include soratra(vaovao, $tertiaire, 2.5vw);
+                }
+                @media #{$tablette-kely}{
+                    @include soratra(vaovao, $tertiaire, 25px);
+                }
+            }
+        }
+        .grand{
+            width: 60%;flex-wrap: wrap;padding: 2vw;overflow: hidden;
+            @include displayFlex(row);justify-content: space-around;
+            @media #{$tablette-kely}{
+                width: 100%;
+            }
+            div{
+                margin: 0 2vw 2vw 0;
+                @include displayFlex(column);justify-content: center;
+                min-width: 140px;
+                .cercle{
+                    @include displayCenter;margin-bottom: 15px;
+                    @include dimension(8.5vw, 8.5vw);
+                    border-radius: 50%;
+                    box-shadow: 0 0 1vw $bleu;
+                    background: $tertiaire;transition:1.3s;
+                    img{
+                        width: 60px;height: 60px;
+                    }
+                    #roule{
+                        animation: roule 1.22s linear ;
+                    }
+                    #tourne{
+                        animation: tourne 1.3s linear ;
+                    }
+                    @keyframes roule {
+                        0%{transform: rotate(0deg)}
+                        100%{transform: rotate(360deg)}
+                    }
+                    @keyframes tourne {
+                        0%{transform: rotate(0deg)}
+                        100%{transform: rotate(-360deg)}
+                    }
+                    @media #{$ordi}{
+                        @include dimension(110px, 110px);
+                    }
+                }
+               
+                   a{ 
+                        @include bouton(18, 5, 1.5, 1.4, 1vw);
+                        margin-bottom: 2vw;
+                        @media #{$tablette}{
+                            @include bouton(18, 5, 4, 2, 1vw);
+                            margin-bottom: 4vw;
+                        }
+                        @media #{$mobile}{
+                            @include bouton(18, 5, 4, 2.3, 1vw);
+                            margin-bottom: 5vw;
+                        }
+                        @media #{$mobile-kely}{
+                            @include bouton(50, 10, 20, 20, 1px);
+                            margin-bottom: 35px;font-weight:100;
+                        }
+                   }
+                
+            }
+        }
+    
+    }
+}
+footer{
+    width: 100%;
+    @include fondNoir(url(../../photo/contact3.jpg), 0.7);
+    display: flex;flex-direction:column;
+    .haut{
+        @include displayFlex(row);justify-content: space-around;
+        width: 100%;padding:2vw;margin:4vw 0;
+        @media #{$mobile-kely}{
+            @include displayFlex(column);
+        }
+        .adresse{
+            @extend %div;
+            @media #{$mobile-kely}{
+                width: 80%;margin-bottom:4vw;
+                @include displayCenter
+            }
+            @media #{$miniature}{
+                width: 98%;margin-bottom:12vw;
+            }
+            div{
+                margin-bottom: 1.5vw;
+                @media #{$miniature}{
+                    margin-bottom: 2.5vw;
+                }
+            }
+
+        }
+   
+        %div{
+            display: flex; flex-direction: column;justify-content: space-around; 
+            
+            h6{
+                @include soratra(vaovao, $tertiaire,1.8vw);
+                margin-bottom: 0.5vw;font-weight: 100;
+                @media #{$tablette}{
+                    @include soratra(vaovao, $tertiaire,23px);
+                }
+                
+            }
+            h2{
+                @include soratra(bel, $tertiaire,2.5vw);text-transform: capitalize;
+                margin-bottom: 1.5vw;
+                @media #{$tablette}{
+                    @include soratra(bel, $tertiaire,22px);
+                }
+                @media #{$miniature}{
+                    margin-bottom: 4vw;
+                }
+            }
+            p{
+                @include soratra(arial,$primaire_be,1.2vw);
+                margin-bottom: 0.5vw;
+                @media #{$tablette}{
+                    @include soratra(arial,$primaire_be,15px);
+                }
+    
+                span{
+                    color: $tertiaire;text-transform: capitalize;
+                }
+                a{
+                    @include soratra(arial,$mangakely,1.2vw);
+                    text-decoration: none; 
+                    @media #{$tablette}{
+                        @include soratra(arial,$mangakely,15px);
+                    }
+                }
+            }
+            .fb{
+                i{
+                    font-size: 2vw;margin-right: 1vw;
+                    color: transparent;-webkit-text-stroke: 1px $fanampiny;
+                   @media #{$tablette}{
+                        font-size: 20px;
+                   }
+                }
+            }
+   
+        }
+        .contact{
+            @extend %div;
+            @media #{$mobile-kely}{
+                width:80%;
+                @include displayCenter;flex-direction:column;
+            }
+            @media #{$miniature}{
+                width: 98%;margin-bottom:4vw;
+            }
+            form{
+                    margin-top:0vw;
+                    @media #{$tablette-kely}{
+                        width:45vw;
+                    }
+                    @media #{$mobile-kely}{
+                        width:100%;
+                    }
+
+                .little{
+                    @media #{$tablette-kely}{
+                        @include displayFlex(column);width:100%;
+                    }
+                }
+                input{
+                        @include soratra(arial,$primaire, 1.2vw);
+                        padding: 8px 15px;background: rgb(22, 22, 22);
+                        border: 2px solid rgb(30, 30, 30) ;
+                        border-radius: 2vw;margin-bottom:2vw;transition: 0.5s ease-out;
+                        &:hover{
+                            background: rgb(13, 13, 13);
+                        }
+                        &:focus{
+                            outline-style: none;
+                            color: rgba(255, 255, 255, 0.7);
+                        }
+                        @media #{$tablette}{
+                            @include soratra(arial,$primaire, 15px);width:100%;margin-bottom:1vw;
+                        }
+                    }
+                textarea{
+                    @extend input;width: 100%;min-height: 1vw !important; border-radius: 1vw;
+                }
+                button{
+                    margin-left: 1.5vw;
+                    @include bouton(0,0,2,1.5,1vw);
+                    span{
+                        margin-top: -1.8vw !important;
+                        margin-left: -1.5vw;
+                    }
+                    @media #{$tablette-kely}{
+                        @include bouton(0,0,30,18,1px);
+                        margin-top: -1vw !important;
+                    }
+                }
+            }
+        }
+    }
+    .bas{
+        @include displayFlex(row);justify-content: space-evenly;
+        background: rgba($fond,0.7);flex-wrap: wrap;
+        width: 100%;padding: 15px 15px;
+        @media (max-width : 500px){
+            justify-content: center;
+        }
+        
+        p{
+            margin: 0px 15px;text-align: center;
+            @include soratra(bel,$primaire_be,1vw);
+            text-transform: capitalize;
+            span{
+                color: $tertiaire;text-transform: capitalize;
+            }
+            @media #{$tablette-kely}{
+                @include soratra(bel,$primaire_be,1.6vw);
+            }
+            @media #{$mobile-kely}{
+                @include soratra(bel,$primaire_be,13px);
+            }
+        }
+        p:nth-child(2){
+            @include displayFlex(row);
+           @media #{$mobile-kely}{
+            margin-top: 10px;
+           }
+            a{
+                display: block;margin-right:3px;
+                text-decoration: none;@include soratra(bel,$primaire_be,1vw);
+                @media #{$tablette-kely}{
+                    @include soratra(bel,$primaire_be,1.6vw);
+                }
+                @media #{$mobile-kely}{
+                    @include soratra(bel,$primaire_be,13px);
+                }
+            }
+            i{
+                display: block;margin-top: 5px ;
+            }
+        }
+    }
+}
+
+//CLASS ET ID APRES JS
+#gris{
+    background-color: rgba($primaire,0.8);
+    transition: 0.3s;backdrop-filter: blur(8px);
+}
+#manga{
+    background-color: rgba($bleu,0.8);
+    transition: 0.3s;backdrop-filter: blur(8px);
+}
+
+@keyframes animation-demande {
+    0%{transform: translate(0%);}
+    50%{transform: translate(8%);}
+    100%{transform: translate(0%);}
+}
+
+//NOUVELLE CLASSE SOUS MENU
+.nouvelle_menu_bleu{
+    background:rgba($bleu,0.8);backdrop-filter: blur(8px);
+}
+.nouvelle_menu_gris{
+    background: rgba($primaire,0.8);backdrop-filter: blur(8px²);
+}

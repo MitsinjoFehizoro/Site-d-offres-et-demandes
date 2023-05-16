@@ -1,0 +1,4 @@
+@function calculPosition($grand_dimension,$petit_dimension,$unite){
+    $positionTop : (($grand_dimension/2)-($petit_dimension/2))*$unite;
+    @return $positionTop;
+}

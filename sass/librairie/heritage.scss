@@ -1,0 +1,159 @@
+@import 'couleur.scss';
+@import 'mixins.scss';
+@import 'font.scss';
+@import 'fonction.scss';
+@import 'responsive.scss';
+
+%barre_de_navigation{
+    @include soratra(gruppo, $tertiaire, 1.3vw);
+    text-decoration:none;
+    @media #{$ordi}{
+        @include soratra(gruppo, $tertiaire, 1.8vw); 
+    }
+    @media #{$tablette}{
+        @include soratra(gruppo, $tertiaire, 1.8vw); 
+    }
+    @media #{$tablette-kely}{
+        @include soratra(gruppo, $tertiaire, 2vw); 
+    }
+    @media #{$mobile}{
+        @include soratra(gruppo, $tertiaire, 20px);
+    }
+    @media #{$mobile-kely}{
+        @include soratra(gruppo, $tertiaire, 17px);
+    }
+    @media #{$miniature}{
+        @include soratra(gruppo, $tertiaire, 20px);
+    }
+}
+
+%lien{
+    @include soratra(kaushan, $tertiaire,1vw);transition: 0.3s;
+    background: $fond;text-transform: uppercase;text-decoration: none;
+    padding: 0.5vw 1.5vw;border-radius: 2vw;box-shadow:0 0 2px $fanampiny;margin-top:2vw;
+    @media #{$tablette}{
+        @include soratra(kaushan, $tertiaire,1.5vw);
+    }
+    @media #{$mobile}{
+        @include soratra(kaushan, $tertiaire,12px);
+        padding: 5px 15px;border-radius: 15px;
+    }
+    @media #{$miniature}{
+        @include soratra(kaushan, $tertiaire,12px);
+        padding: 6px 30px;border-radius: 15px;
+    }
+    &:hover{
+        transform: skew(-20deg);
+        box-shadow:5px 4px 0px $fanampiny;
+        color: $fanampiny;
+    }
+}
+%miala{
+    @include displayCenter;@include soratra(arial, $tertiaire, 20px);
+    position: absolute;top:2px;right:2px;padding:3px 8px;
+    background: #eb1f1f;border-radius:100%;z-index:2;
+    cursor: pointer;transition: 0.3s ease;
+    @media #{$mobile}{
+        @include soratra(arial, $tertiaire, 20px);
+        box-shadow: 2px 2px 0 $secondaire;
+       
+    }
+    @media #{$miniature}{
+        right: 20px;top: 10px;
+    }
+    &:hover{
+        animation: miala 1s;
+
+    }
+    @keyframes miala {
+        0%{transform: rotate(0deg);border-radius: 50%;box-shadow: none;background: white;color: #eb1f1f;}
+        80%{background: white;color: #eb1f1f;}
+        100%{transform: rotate(360deg);border-radius: 50%;box-shadow: none;}
+    }
+}
+%logo{
+    padding:1vw 0;
+    @include displayFlex(row);justify-content: center;
+    .tenaIzy{
+        @include displayFlex(row);
+        .eau{
+            @include displayCenter;border-radius:50%;position: relative;
+            padding: 4px;background:$primaire;
+            box-shadow: 0 0 5px $secondaire;
+            .rond{
+                width:2.8vw;height:3.2vw;border:0.3vw solid $tertiaire;
+                border-radius: 50%;
+                @media #{$ordi}{
+                    width:32px;height:38px;    
+                }
+                @media #{$tablette}{
+                    width:29px;height:35px;border:2px solid $tertiaire; 
+                }
+                @media #{$miniature}{
+                    width:30px;height:34px;
+                }
+            }
+        }
+        .offre{
+            @include soratra(kaushan, $tertiaire, 2.1vw);
+            margin-left: -1.5vw;transition: 0.5s;
+            background-color: $secondaire;padding: 0 1vw 0 1.5vw;
+            @media #{$ordi}{
+                @include soratra(kaushan, $tertiaire, 24px );
+                margin-left: -18px;
+                padding: 0 10px 0 18px;
+            }
+            @media #{$tablette}{
+                @include soratra(kaushan, $tertiaire, 20px );
+                margin-left: -15px;
+                padding: 0 7px 0 15px;
+            }
+            @media #{$miniature}{
+                @include soratra(kaushan, $tertiaire, 20px );
+            }
+        }
+        .demande{
+            @include soratra(kaushan, $secondaire, 1.7vw);transition: 0.5s;
+            background-color:transparent;border-top: 0.3vw solid $secondaire;padding-right:0.4vw;
+            border-bottom: 0.3vw solid $secondaire;margin-left: 0.2vw;
+            @media #{$ordi}{
+                @include soratra(kaushan, $secondaire, 20px);
+                border-bottom: 3px solid $secondaire;border-top: 3px solid $secondaire;
+                padding-right:4px;margin-left:2px;
+            }
+            @media #{$tablette}{
+                @include soratra(kaushan, $secondaire, 17.5px);
+                border-bottom: 2px solid $secondaire;border-top: 2px solid $secondaire;
+                padding-right:4px;margin-left:2px;
+            }
+            @media #{$miniature}{
+                @include soratra(kaushan, $secondaire, 17px);
+            }
+        }
+    }
+}
+
+%connexion{
+    a{
+        text-decoration: none;
+        div{
+            @include soratra(cinzel, $fanampiny, 1vw);font-weight: bold;
+            padding: 0.5vw 1.4vw 0.4vw 1.4vw;border:2px solid $fanampiny;border-radius: 2vw;
+            box-shadow:1px 1px 5px $tertiaire;transition: 0.5s;
+            @media #{$ordi}{
+                font-weight: bold;
+                @include soratra(cinzel, $fanampiny, 1.1vw);
+            }
+            &:hover{
+                transform: skew(-25deg);
+                border:2px solid $tertiaire;
+                color: $tertiaire;
+                box-shadow:7px 7px 0px $fanampiny;
+            }
+        }
+    }
+    @media #{$tablette}{
+        display: none;
+    }
+}
+

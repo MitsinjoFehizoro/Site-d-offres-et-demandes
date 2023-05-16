@@ -1,0 +1,228 @@
+@import"couleur.scss";
+@import "responsive.scss";
+@mixin fondNoir($image, $flou) {
+    background: rgba($fond,$flou) $image;
+    background: {
+        repeat:no-repeat;
+        size: cover;
+        position:center;
+        blend-mode:darken;
+    };
+}
+
+@mixin displayFlex($direction){
+    display: flex;flex-direction:$direction;align-items: center;
+}
+@mixin displaySimple($direction){
+    display: flex;flex-direction: $direction;
+}
+@mixin  displayCenter {
+    display: flex;align-items: center;justify-content: center;flex-direction: row;
+}
+
+@mixin portfolio($cote,$bordure,$unite) {
+    @include displayCenter;
+    background:linear-gradient(to right,$mangakely,$vert,$fanampiny);position: absolute;
+    width:($cote+$bordure)*$unite;height:($cote+$bordure)*$unite;clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    p{
+        clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+        width:$cote*$unite; height:$cote*$unite;
+    img{
+        @include dimension(auto, 100%)
+    }
+    }
+}
+
+@mixin soratra($familly,$color,$size) {
+    font-family: $familly;
+    font-size: $size;
+    color: $color;
+}
+
+@mixin bouton($width ,$height ,$padding, $size,$unite){
+    display: inline-block;   
+    span{
+        @include soratra (kaushan,$tertiaire,$size*$unite);
+        position: absolute;
+        text-align: center;
+        text-decoration: none;
+        transition: 0.5s;transform-origin: 50% 50% 18px;
+        padding: 0.5px $padding*$unite;
+        @media #{$ordi}{
+            transform-origin: 50% 50% 15px;
+        }
+        @media #{$tablette-kely}{
+            transform-origin: 50% 50% 13px;
+        }
+        @media #{$mobile-kely}{
+            transform-origin: 50% 50% 16px;
+        }
+        @media #{$miniature}{
+            transform-origin: 50% 50% 12px;
+        }
+    }
+    span:nth-child(1){
+        background: linear-gradient($fanampiny 10%,$fond);border-radius: 2vw;
+        transform: rotateX(90deg);
+        box-shadow: 3px 3px 0px $mangakely;
+        border: 1px solid $mangakely;
+    }
+    span:nth-child(2){
+        background: linear-gradient(to right,$bleu 30%,$primaire);border-radius: 2vw;
+        transform: rotateX(0deg);
+        box-shadow: 3px 3px 0px $vert;
+        border: 1px solid $vert;
+    }
+    &:hover span:nth-child(1){
+        transform: rotateX(0deg);
+    }
+    &:hover span:nth-child(2){
+        transform: rotateX(-90deg);
+    }  
+    span:nth-child(3){
+        position: inherit;
+        width: $width*$unite;height:$height*$unite;
+    }
+}
+@mixin dimension ($width, $height){
+    width: $width; height: $height;
+}
+@mixin sous-menu-milay($color-vaovao){
+        margin-bottom: 10px;
+        width: 100%;
+        a{
+            @include displayCenter;
+            padding: 0px 20px;text-decoration:none;
+            p{
+                margin: 0;padding: 0;
+                @include dimension(45px, 45px);border-radius: 8px;
+                position:relative;overflow:hidden;
+                span{
+                    position: absolute;top: 0;left: 0;display: block;
+                    @include dimension(100%, 100%);
+                    @include displayCenter;transition: 0.5s;color: $tertiaire;
+                }
+                span:nth-child(1){
+                    background:$color-vaovao;
+                }
+                span:nth-child(2){
+                    left: -100%;
+                   background:lighten($color: $color-vaovao, $amount:25);
+               }
+            }
+            .texte-titre{
+                @include dimension(185px !important, 35px);font-weight:500;
+                @include soratra(gruppo, $color-vaovao, 18px);
+                margin-left: 10px;text-transform:capitalize;
+                display: flex;align-items: center;
+                background: none;padding:0px 10px 0px 10px;transition: 0.3s ease-in-out;
+                display: flex;justify-content: space-between;
+                i{
+                    @include displayCenter;margin-top: -2px;transition: 0.3s ease-in-out;
+                }
+            }
+            &:hover{
+                p{
+                    span:nth-child(1){left:100%;}
+                    span:nth-child(2){left:0%;}
+                }
+                i{
+                    color: darken($color: $color-vaovao, $amount:20);
+                }
+                .texte-titre{
+                    background: $tertiaire;
+                    color: darken($color: $color-vaovao, $amount:20);
+                    i{
+                        transform: rotate(90deg);
+                    }
+                }
+            }
+        }
+    
+}
+
+
+@mixin sous-menu-active($color-vaovao){
+    margin-bottom: 10px;
+    width: 100%;
+    a{
+        @include displayCenter;
+        padding: 0px 20px;text-decoration:none;
+        p{
+            margin: 0;padding: 0;
+            @include dimension(45px, 45px);border-radius: 8px;
+            position:relative;overflow:hidden;
+            span{
+                position: absolute;top: 0;left: 0;display: block;
+                @include dimension(100%, 100%);
+                @include displayCenter;transition: 0.5s;color: $tertiaire;
+                background:lighten($color: $color-vaovao, $amount:25);
+            }
+            span:nth-child(1){
+                background:$color-vaovao;
+                left: 100%;
+            }
+            span:nth-child(2){
+                left: 0%;
+              
+           }
+        }
+        i{
+            color: darken($color: $color-vaovao, $amount:20);
+        }
+        .texte-titre{
+            @include dimension(170px, 35px);
+            @include soratra(kaushan, $color-vaovao, 20px);
+            margin-left: 10px;text-transform:capitalize;
+            padding:2px 10px 0px 10px;transition: 0.3s ease-in-out;
+            display: flex;justify-content: space-between;
+            background: $tertiaire;
+            color: darken($color: $color-vaovao, $amount:20);
+            i{
+                @include displayCenter;margin-top: -2px;transition: 0.3s ease-in-out;
+                color: darken($color: $color-vaovao, $amount:20);transform: rotate(90deg);
+            }
+        }
+    }
+
+}
+@mixin sous-menu-special($color-vaovao){
+    margin-bottom: 20px;
+    width: 100%;
+    a{
+        @include displayCenter;
+        padding: 0px 20px;text-decoration:none;
+        p{
+            margin: 0;padding: 0;
+            @include dimension(50px, 50px);border-radius: 8px;
+            position:relative;overflow:hidden;
+            span{
+                position: absolute;top: 0;left: 0;display: block;
+                @include dimension(100%, 100%);
+                @include displayCenter;transition: 0.5s;
+                background:lighten($color: $color-vaovao, $amount:10);
+                color: darken($color: $color-vaovao, $amount:30);
+                font-size: 23px;
+            }
+        }
+        .texte-titre{    
+            @include dimension(170px, 40px);
+            @include soratra(kaushan, $color-vaovao, 25px);
+            margin-left: 10px;text-transform:capitalize;
+            padding:2px 10px 0px 10px;
+            display: flex;justify-content: space-between;
+            background: $tertiaire;
+            color: darken($color: $color-vaovao, $amount:20);
+            i{
+                font-size: 22px;margin-top:7.8px;
+            }
+        }
+    }
+    &:active{
+        .texte-titre{
+            background: lighten($color: $color-vaovao, $amount:20);
+            color: $fond;
+        }
+    }
+
+}
